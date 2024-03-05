@@ -2,12 +2,19 @@ import { useState } from "react";
 import Router from "./components/Router";
 import { app } from "firebaseAPP";
 import { getAuth } from "firebase/auth";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   const auth = getAuth(app);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
     !!auth?.currentUser
   );
-  return <Router isAuthenticated={isAuthenticated} />;
+  return (
+    <>
+      <ToastContainer />
+      <Router isAuthenticated={isAuthenticated} />;
+    </>
+  );
 }
 export default App;
