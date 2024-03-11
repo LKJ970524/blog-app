@@ -4,10 +4,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Router from "./components/Router";
 import Loader from "components/Loader";
-import { app, db } from "firebaseAPP";
+import { app } from "firebaseAPP";
 
 function App() {
-  console.log(db);
   
   const auth = getAuth(app);
   // auth를 체크하기 전에 (initialize 전)에는 loader를 띄워주는 용도
