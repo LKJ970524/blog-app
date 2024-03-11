@@ -179,6 +179,10 @@ footer a:focus {
   padding: 20px 0;
 }
 
+.post__text--pre-wrap {
+  white-space: pre-wrap;
+}
+
 .post__no-post {
   padding: 24px;
   text-align: center;
