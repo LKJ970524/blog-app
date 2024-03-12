@@ -1,11 +1,14 @@
 import AuthContext from "context/AuthContext";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "firebaseAPP";
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { PostProps } from "./PostList";
 
 export default function PostForm() {
+  const params = useParams();
+  const [post, setPost] = useState<PostProps | null>(null);
   const [title, setTitle] = useState<string>("");
   const [summary, setSummary] = useState<string>("");
   const [content, setContent] = useState<string>("");
@@ -16,19 +19,34 @@ export default function PostForm() {
     e.preventDefault();
 
     try {
-      // fireStore로 데이터생성
-      await addDoc(collection(db, "post"), {
-        title: title,
-        summary: summary,
-        content: content,
-        createAt: new Date()?.toLocaleDateString(),
-        email: user?.email,
-      });
-      toast?.success("게시글을 생성했습니다.");
-      navigate("/");
+      if (post && post.id) {
+        // 만약 post 데이터가 있다면, firestore로 데이터 수정
+        const postRef = doc(db, "post", post?.id);
+        await updateDoc(postRef, {
+          title: title,
+          summary: summary,
+          content: content,
+          updatedAt: new Date()?.toLocaleDateString(),
+        });
+
+        toast?.success("게시글을 수정했습니다.");
+        navigate(`/posts/${post.id}`);
+      } else {
+        // fireStore로 데이터생성
+        await addDoc(collection(db, "post"), {
+          title: title,
+          summary: summary,
+          content: content,
+          createAt: new Date()?.toLocaleDateString(),
+          email: user?.email,
+          uid: user?.uid,
+        });
+        toast?.success("게시글을 생성했습니다.");
+        navigate("/");
+      }
     } catch (e: any) {
       console.log(e);
-      toast?.error(e?.code)
+      toast?.error(e?.code);
     }
   };
 
@@ -51,6 +69,27 @@ export default function PostForm() {
       setContent(value);
     }
   };
+
+  const getPost = async (id: string) => {
+    if (id) {
+      const docRef = doc(db, "post", id);
+      const docSnap = await getDoc(docRef);
+
+      setPost({ id: docSnap.id, ...(docSnap.data() as PostProps) });
+    }
+  };
+
+  useEffect(() => {
+    if (params?.id) getPost(params?.id);
+  }, [params?.id]);
+
+  useEffect(() => {
+    if (post) {
+      setTitle(post?.title);
+      setSummary(post?.summary);
+      setContent(post?.content);
+    }
+  }, [post]);
 
   return (
     <form onSubmit={onSubmit} className="form">
@@ -87,7 +126,7 @@ export default function PostForm() {
         />
       </div>
       <div className="form__block">
-        <input type="submit" value="제출" className="form__btn-submit" />
+        <input type="submit" value={post ? '수정' : '제출'} className="form__btn-submit" />
       </div>
     </form>
   );
