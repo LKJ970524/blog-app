@@ -45,13 +45,11 @@
   ```
 
 - 컴포넌트
-
-  <img src='https://github.com/LKJ970524/blog-app/assets/115642699/97446d80-3da6-44b6-9018-cf5f29d2fcb3' width=230 />
+  - <img src='https://github.com/LKJ970524/blog-app/assets/115642699/97446d80-3da6-44b6-9018-cf5f29d2fcb3' width=230 />
   <!-- 사진 다시 넣기 -->
 
 - 프로젝트 설계
-
-  <img src="https://github.com/LKJ970524/blog-app/assets/115642699/e124a996-9480-43d8-a208-90f3c15cb7c1" width=230 />
+  - <img src="https://github.com/LKJ970524/blog-app/assets/115642699/e124a996-9480-43d8-a208-90f3c15cb7c1" width=230 />
 
   - src 폴더 안에 pages,component 관련 코드
   - components: 공통 컴포넌트
