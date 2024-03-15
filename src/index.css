@@ -64,6 +64,12 @@ footer a:focus {
   color: black;
 }
 
+.footer__theme-btn {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
 /* post navigation */
 .post__navigation {
   display: flex;
@@ -94,9 +100,11 @@ footer a:focus {
 }
 
 .post__box {
-  padding-top: 24px;
-  padding-bottom: 24px;
+  padding: 24px;
   border-top: 1px solid #f2f2f2;
+  background-color: #1e2937;
+  border-radius: 20px;
+  margin-bottom: 8px;
 }
 
 .post__profile-box {
@@ -115,23 +123,24 @@ footer a:focus {
 
 .post__date,
 .post__author-name {
-  color: gray;
+  color: lightgray;
 }
 
 .post__title {
   font-size: 20px;
   font-weight: 600;
   margin: 14px 0;
+  color: white;
 }
 
 .post__text {
-  color: dimgray;
+  color: lightgray;
   font-size: 16px;
 }
 
 .post__list a {
   text-decoration: none;
-  color: black;
+  color: lightgray;
 }
 
 .post__utils-box {
@@ -139,7 +148,7 @@ footer a:focus {
   gap: 8px;
   flex-direction: row-reverse;
   font-size: 14px;
-  color: gray;
+  color: lightgray;
 }
 
 .post__delete:hover,
@@ -150,13 +159,19 @@ footer a:focus {
 .post__edit:focus,
 .post__edit a:hover,
 .post__edit a:focus {
-  color: black;
+  color: white;
   cursor: pointer;
 }
 
 .post__edit a {
   text-decoration: none;
-  color: gray;
+  color: white;
+}
+
+/* 변경 가능성 있는것 */
+.post__edit {
+  text-decoration: none;
+  color: lightgray;
 }
 
 .post__detail .post__title {
@@ -186,7 +201,6 @@ footer a:focus {
 .post__no-post {
   padding: 24px;
   text-align: center;
-  color: gray;
   border: 2px solid #f2f2f2;
   border-radius: 20px;
   background-color: #f2f2f2;
@@ -242,6 +256,7 @@ footer a:focus {
   color: gray;
   font-size: 14px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .profile__logout:focus,
@@ -489,4 +504,92 @@ input:checked + .carousel__slide-container .nav label {
   border-radius: 50%;
   z-index: 9999;
   animation: rotation 1s linear infinite;
+}
+
+/* dark mode */
+
+.white {
+  transition: all 0.25s linear;
+  background-color: white;
+}
+
+.white .post__no-post {
+  background-color: #1e2937;
+  color: white;
+}
+
+.dark {
+  transition: all 0.25s linear;
+  background-color: #1e2937;
+  min-height: 100vh;
+}
+
+.dark a,
+.dark .post__delete,
+.dark .profile__logout,
+.dark .post__title,
+.dark .post__author-name,
+.dark .profile__name {
+  color: black;
+}
+
+.dark .footer__theme-btn,
+.dark .form__title,
+.dark .form__block,
+.dark .form__link,
+.dark .post__navigation--active,
+.dark .category:hover,
+.dark .category:focus,
+.dark .form label {
+  color: white;
+}
+
+.dark a:hover,
+.dark a:focus,
+.dark .post__text,
+.dark .post__text--pre-wrap,
+.dark .profile__email,
+.dark .post__date {
+  color: black;
+}
+
+.dark a:hover,
+.dark a:focus,
+.dark .post__delete:hover,
+.dark .post__navigation--active:focus,
+.dark .post__navigation--active:hover,
+
+.dark .post__delete:focus {
+  color: lightslategray;
+}
+
+.dark .form__error {
+  color: #ff6a71;
+}
+
+.dark footer,
+.dark header,
+.dark footer a,
+.dark header a {
+  background-color: #111827;
+  color: white;
+}
+
+.dark .post__box {
+  background-color: white;
+}
+
+.dark .profile__email,
+.dark .profile__logout,
+.dark .profile__name {
+  color: white;
+}
+
+.dark .post__category {
+  color: white;
+  background-color: #1e2937;
+}
+
+.dark .post__profile {
+  background-color: #1e2937;
 }

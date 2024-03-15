@@ -101,14 +101,18 @@ export default function PostList({
           <div
             role="presentation"
             onClick={() => setActiveTab("all")}
-            className={activeTab === "all" ? "post__navigation--active" : ""}
+            className={
+              activeTab === "all" ? "post__navigation--active" : "category"
+            }
           >
             전체
           </div>
           <div
             role="presentation"
             onClick={() => setActiveTab("my")}
-            className={activeTab === "my" ? "post__navigation--active" : ""}
+            className={
+              activeTab === "my" ? "post__navigation--active" : "category"
+            }
           >
             나의 글
           </div>
@@ -118,7 +122,7 @@ export default function PostList({
               role="presentation"
               onClick={() => setActiveTab(category)}
               className={
-                activeTab === category ? "post__navigation--active" : ""
+                activeTab === category ? "post__navigation--active" : "category"
               }
             >
               {category}
