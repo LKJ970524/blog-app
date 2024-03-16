@@ -45,10 +45,12 @@
   ```
 
 - 컴포넌트
+
   - <img src='https://github.com/LKJ970524/blog-app/assets/115642699/97446d80-3da6-44b6-9018-cf5f29d2fcb3' width=230 />
-  <!-- 사진 다시 넣기 -->
+    <!-- 사진 다시 넣기 -->
 
 - 프로젝트 설계
+
   - <img src="https://github.com/LKJ970524/blog-app/assets/115642699/e124a996-9480-43d8-a208-90f3c15cb7c1" width=230 />
 
   - src 폴더 안에 pages,component 관련 코드
@@ -63,6 +65,7 @@
 </br>
 
 ### 프로젝트를 진행하며 정리한 블로그
+
 #### React-router-dom에 대해
 
 [블로그 주소](https://velog.io/@dlrbwjd97/React-router-dom)
@@ -76,13 +79,153 @@
 </br>
 </br>
 
+### branch 별 작업(커밋 마다 코드가 있습니다.) 
+
+#### feature/2-2
+
+- react-router-dom을 설치 및 적용시켰습니다
+
+#### feature/2-3
+
+- 프로젝트 구조 세팅 및 메인(홈) 작업 (스타일링 적용)
+- 프로젝트 컴포넌트 작업 (프로필 및 게시글, 게시글 detail)
+- 프로젝트 컴포넌트 Carousel 마크업 및 css 적용
+- 프로젝트 컴포넌트 절대 경로 설정 및 적용
+
+```json
+tsconfig 파일
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src"],
+  "paths": {
+    "pages/*": ["pages/*"],
+    "components/*": ["components/*"]
+  }
+}
+```
+
+#### feature/2-4
+
+- Firebase 세팅하기
+- 로그인 페이지 세팅하기(마크업 및 css 적용)
+- Route 적용(로그인과 비로그인 상태 구분하기)
+- Firebase Auth 세팅
+- [react-toastify](https://www.npmjs.com/package/react-toastify) 설치
+- Firebase Auth를 사용하여 회원가입 기능 완성
+- Firebase Auth를 사용하여 로그인 기능 완성
+- Firebase Auth를 사용하여 로그아웃 기능 완성
+- Context api로 사용자 정보 관리
+
+```tsx
+import { ReactNode, createContext, useEffect, useState } from "react";
+import { User, getAuth, onAuthStateChanged } from "firebase/auth";
+import { app } from "firebaseAPP";
+
+interface AuthProps {
+  children: ReactNode;
+}
+
+const AuthContext = createContext({
+  user: null as User | null,
+});
+
+export const AuthContextProvider = ({ children }: AuthProps) => {
+  const auth = getAuth(app);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        setCurrentUser(user);
+      }
+    });
+  }, [auth]);
+
+  return (
+    <AuthContext.Provider value={{ user: currentUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export default AuthContext;
+```
+
+#### feature/2-5
+- Firestore 세팅
+- Firestore로 데이터 생성하기 게시글 폼 작업
+- Firestore로 데이터 가져오기 게시글 리스트 작업
+- Firestore로 데이터 가져오기 게시글 detail 작업
+
+#### feature/2-6
+- Firestore로 데이터 수정하기 게시글 수정 구현
+- Firestore로 데이터 삭제하기 게시글 삭제 구현
+- Firestore 쿼리 적용하기 내가 쓴 글 탭 구현
+- Firestore 쿼리 적용하기 카테고리 탭 구현
+
+#### feature/2-7
+- Context Api로 다크모드 구현(다크모드 toggle 기능 구현)
+- Context Api로 다크모드 구현(다크모드 toggle css 구현)
+
+
 ### 트러블 슈팅
+
+- feature/2-5에서 게시글생성이 되지 않는 오류를 발견하였습니다.
+  <img alt='에러내용' src='https://github.com/LKJ970524/blog-app/assets/115642699/f2faceb4-02f0-4e64-8980-9606060fcc6b' width=500px />
+
+  - 해당 에러의 문제를 검색하고 알아본 결과
+
+  ```js
+  rules_version = '2';
+
+  service cloud.firestore {
+    match /databases/{database}/documents {
+      match /{document=**} {
+        allow read, write: if false;
+      }
+    }
+  }
+  ```
+
+  해당 코드의 보고 쓰는 것이 전부 중지 되어있음을 확인했고 if false를 if true로 바꿔주었습니다. 이로써 게시글을 작성하는 것에는 이상이 없었지만 한가지 다른 문제점이 발견되었습니다. 바로 보안이 취약하다는점 이었고 이것을 다시한번 해결하기 위해 조건을 사용자가 로그인 되었을때만 작성 및 읽는 것이 가능하도록 변경 시켰습니다.
+
+  ```js
+  rules_version = '2';
+
+  // Allow read/write access on all documents to any user signed in to the application
+  service cloud.firestore {
+    match /databases/{database}/documents {
+      match /{document=**} {
+        allow read, write: if request.auth != null;
+      }
+    }
+  }
+  ```
+  출처 : [firebase 공식문서](https://firebase.google.com/docs/firestore/security/get-started?hl=ko#auth-required)
 
 <br/>
 <br/>
 
 ## 느낀점
-
 
 <br/>
 <br/>
