@@ -208,7 +208,7 @@ export default AuthContext;
 ### 트러블 슈팅
 
 - feature/2-5에서 게시글생성이 되지 않는 오류를 발견하였습니다.
-<br/>
+
   <img alt='에러내용' src='https://github.com/LKJ970524/blog-app/assets/115642699/f2faceb4-02f0-4e64-8980-9606060fcc6b' width=500px />
 
   - 해당 에러의 문제를 검색하고 알아본 결과
@@ -243,7 +243,7 @@ export default AuthContext;
   출처 : [firebase 공식문서](https://firebase.google.com/docs/firestore/security/get-started?hl=ko#auth-required)
 
 - feature/2-8에서 댓글생성이 되지 않는 오류를 발견하였습니다.
-<br/>
+
   <img alt='에러내용' src='https://github.com/LKJ970524/blog-app/assets/115642699/7004983d-4296-4990-b29a-b9ca766fcdec' width=500px />
 
   - 생성이 되지 않는 이유를 찾았고 너무 쉬운 문제였습니다. interface를 정의할때 post와 getPost를 같이 정의 했는데 Comments 컴포넌트에서 post만 사용하고 getPost는 사용하지 않아서 생긴 오류였습니다. 해결방법으로 getPost를 선언해주었습니다.
