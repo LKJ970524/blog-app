@@ -13,6 +13,7 @@ code {
 }
 
 /* header */
+
 header {
   display: flex;
   justify-content: space-between;
@@ -30,13 +31,13 @@ header .header__logo {
 }
 
 header a {
-  margin: 0 10px;
+  margin: 0px 10px;
   text-decoration: none;
   color: gray;
 }
 
-header a:hover,
-header a:focus {
+header a:focus,
+header a:hover {
   color: black;
 }
 
@@ -54,13 +55,12 @@ footer {
 }
 
 footer a {
-  margin: 0 10px;
   text-decoration: none;
   color: gray;
 }
 
-footer a:hover,
-footer a:focus {
+footer a:focus,
+footer a:hover {
   color: black;
 }
 
@@ -84,7 +84,7 @@ footer a:focus {
 
 .post__navigation--active {
   color: black;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* post list, post detail */
@@ -100,11 +100,9 @@ footer a:focus {
 }
 
 .post__box {
-  padding: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
   border-top: 1px solid #f2f2f2;
-  background-color: #1e2937;
-  border-radius: 20px;
-  margin-bottom: 8px;
 }
 
 .post__profile-box {
@@ -123,24 +121,23 @@ footer a:focus {
 
 .post__date,
 .post__author-name {
-  color: lightgray;
+  color: gray;
 }
 
 .post__title {
   font-size: 20px;
   font-weight: 600;
-  margin: 14px 0;
-  color: white;
+  margin: 14px 0px;
 }
 
 .post__text {
-  color: lightgray;
+  color: dimgray;
   font-size: 16px;
 }
 
 .post__list a {
   text-decoration: none;
-  color: lightgray;
+  color: black;
 }
 
 .post__utils-box {
@@ -148,31 +145,39 @@ footer a:focus {
   gap: 8px;
   flex-direction: row-reverse;
   font-size: 14px;
-  color: lightgray;
+  color: gray;
+}
+
+.post__delete {
+  cursor: pointer;
 }
 
 .post__delete:hover,
-.post__delete:focus,
-.post__delete a:hover,
-.post__delete a:focus,
+.post__delete:focus {
+  color: black;
+}
+
 .post__edit:hover,
 .post__edit:focus,
 .post__edit a:hover,
 .post__edit a:focus {
-  color: white;
-  cursor: pointer;
+  color: black;
 }
 
 .post__edit a {
   text-decoration: none;
-  color: white;
+  color: gray;
 }
 
-/* 변경 가능성 있는것 */
-.post__edit {
-  text-decoration: none;
-  color: lightgray;
+.post__no-post {
+  padding: 24px;
+  text-align: center;
+  color: gray;
+  border: 1px solid #f2f2f2;
+  border-radius: 20px;
 }
+
+/* post detail */
 
 .post__detail .post__title {
   font-size: 36px;
@@ -180,43 +185,35 @@ footer a:focus {
 }
 
 .post__detail .post__utils-box {
-  padding: 10px 0;
+  padding: 10px 0px;
   border-top: 1px solid #f2f2f2;
   border-bottom: 1px solid #f2f2f2;
   flex-direction: row;
 }
 
 .post__detail .post__profile-box {
-  padding: 10px 0;
+  padding: 10px 0px;
 }
 
 .post__detail .post__text {
-  padding: 20px 0;
+  padding: 20px 0px;
 }
 
 .post__text--pre-wrap {
   white-space: pre-wrap;
 }
 
-.post__no-post {
-  padding: 24px;
-  text-align: center;
-  border: 2px solid #f2f2f2;
-  border-radius: 20px;
-  background-color: #f2f2f2;
-  color: black;
-}
-
 .post__category {
   color: gray;
   border: 1px solid lightgray;
-  background: #f2f2f2;
-  padding: 0 4px;
-  font-size: 12px;
+  backgroud: #f2f2f2;
+  padding: 0px 4px;
   border-radius: 10px;
+  font-size: 12px;
 }
 
 /* profile */
+
 .profile__box {
   display: flex;
   gap: 18px;
@@ -255,12 +252,12 @@ footer a:focus {
 .profile__logout {
   color: gray;
   font-size: 14px;
-  text-decoration: none;
   cursor: pointer;
+  text-decoration: underline;
 }
 
-.profile__logout:focus,
-.profile__logout:hover {
+.profile__logout:hover,
+.profile__logout:focus {
   color: black;
 }
 
@@ -282,7 +279,6 @@ ul.carousel__slides {
   list-style: none;
 }
 
-/* 사용자가 text를 선택할 수 없게 설정 */
 .carousel__slides * {
   user-select: none;
   -ms-user-select: none;
@@ -445,18 +441,18 @@ input:checked + .carousel__slide-container .nav label {
   cursor: pointer;
   margin: 0 auto;
   font-size: 16px;
-  border: 1px solid #2563eb;
   background-color: #2563eb;
   color: white;
+  border: none;
 }
 
 .form .form__btn-submit:hover,
 .form .form__btn-submit:focus {
   background-color: #1945a4;
-  border: 1px solid #1945a4;
 }
 
 /* login form */
+
 .form--lg {
   min-height: 70vh;
   margin-top: 10vh;
@@ -483,14 +479,16 @@ input:checked + .carousel__slide-container .nav label {
 }
 
 .form select {
-  border: 1px solid #f2f2f2;
+  border: 1px solid lightgray;
   max-width: 680px;
   height: 40px;
-  padding: 0 20px;
+  padding: 0px 20px;
+  font-size: 16px;
   border-radius: 0.3rem;
 }
 
 /* loader */
+
 .loader {
   width: 48px;
   height: 48px;
@@ -506,16 +504,108 @@ input:checked + .carousel__slide-container .nav label {
   animation: rotation 1s linear infinite;
 }
 
+/* comments */
+
+.comments {
+  width: 100%;
+}
+
+.comments__form label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.comments__form textarea {
+  min-height: 100px;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  border: 1px solid lightgray;
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.comments__form .form__block {
+  margin-top: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.comments__form .form__btn-submit {
+  width: 100px;
+  height: 36px;
+  cursor: pointer;
+  font-weight: 500;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.form__block-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.comments__form .form__btn-submit:hover,
+.comments__form .form__btn-submit:focus {
+  background-color: #1945a4;
+}
+
+.comments__list {
+  margin-top: 40px;
+  margin-bottom: 100px;
+}
+
+.comment__box {
+  padding: 12px 0px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.comment__profile-box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 12px;
+}
+
+.comment__email {
+  font-weight: 500;
+}
+
+.comment__date {
+  color: gray;
+}
+
+.comment__delete {
+  color: gray;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.comment__delete:hover,
+.comment__delete:focus {
+  color: black;
+}
+
+.comment__text {
+  font-size: 14px;
+  padding-top: 4px;
+}
+
 /* dark mode */
 
 .white {
   transition: all 0.25s linear;
   background-color: white;
-}
-
-.white .post__no-post {
-  background-color: #1e2937;
-  color: white;
 }
 
 .dark {
@@ -525,22 +615,16 @@ input:checked + .carousel__slide-container .nav label {
 }
 
 .dark a,
+.dark .form label,
 .dark .post__delete,
 .dark .profile__logout,
+.dark .form__title,
+.dark .post__navigation--active,
 .dark .post__title,
 .dark .post__author-name,
-.dark .profile__name {
-  color: black;
-}
-
 .dark .footer__theme-btn,
-.dark .form__title,
-.dark .form__block,
-.dark .form__link,
-.dark .post__navigation--active,
-.dark .category:hover,
-.dark .category:focus,
-.dark .form label {
+.dark .profile__name,
+.dark .comments__list {
   color: white;
 }
 
@@ -549,18 +633,16 @@ input:checked + .carousel__slide-container .nav label {
 .dark .post__text,
 .dark .post__text--pre-wrap,
 .dark .profile__email,
-.dark .post__date {
-  color: black;
+.dark .post__date,
+.dark .form__block,
+.dark .comment__date,
+.dark .comment__delete {
+  color: lightgray;
 }
 
-.dark a:hover,
-.dark a:focus,
-.dark .post__delete:hover,
-.dark .post__navigation--active:focus,
-.dark .post__navigation--active:hover,
-
-.dark .post__delete:focus {
-  color: lightslategray;
+.dark .comment__delete:hover,
+.dark .comment__delete:focus {
+  color: white;
 }
 
 .dark .form__error {
@@ -568,28 +650,6 @@ input:checked + .carousel__slide-container .nav label {
 }
 
 .dark footer,
-.dark header,
-.dark footer a,
-.dark header a {
+.dark header {
   background-color: #111827;
-  color: white;
-}
-
-.dark .post__box {
-  background-color: white;
-}
-
-.dark .profile__email,
-.dark .profile__logout,
-.dark .profile__name {
-  color: white;
-}
-
-.dark .post__category {
-  color: white;
-  background-color: #1e2937;
-}
-
-.dark .post__profile {
-  background-color: #1e2937;
 }

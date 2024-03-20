@@ -79,7 +79,7 @@
 </br>
 </br>
 
-### branch 별 작업(커밋 마다 코드가 있습니다.) 
+### branch 별 작업(커밋 마다 코드가 있습니다.)
 
 #### feature/2-2
 
@@ -171,21 +171,39 @@ export default AuthContext;
 ```
 
 #### feature/2-5
+
 - Firestore 세팅
 - Firestore로 데이터 생성하기 게시글 폼 작업
 - Firestore로 데이터 가져오기 게시글 리스트 작업
 - Firestore로 데이터 가져오기 게시글 detail 작업
 
 #### feature/2-6
+
 - Firestore로 데이터 수정하기 게시글 수정 구현
 - Firestore로 데이터 삭제하기 게시글 삭제 구현
 - Firestore 쿼리 적용하기 내가 쓴 글 탭 구현
 - Firestore 쿼리 적용하기 카테고리 탭 구현
 
 #### feature/2-7
+
 - Context Api로 다크모드 구현(다크모드 toggle 기능 구현)
 - Context Api로 다크모드 구현(다크모드 toggle css 구현)
 
+#### feature/2-8
+
+- 댓글 폼 UI 구현
+- 댓글 폼 작업(fireStore의 updateDoc, arrayUnion을 사용합니다.)
+  - 문서 업데이트 : 전체 문서를 덮어쓰지 않고 문서의 일부 필드를 업데이트하려면 언어별 `update()` 메서드를 사용합니다.
+  - 기존의 Posts에 comments라는 Array(배열)형태의 필드를 추가합니다.
+  - 배열 요소 업데이트 : 문서에 Array(배열) 필드가 포함되어 있으면 `arrayUnion()`을 사용해 요소를 추가할 수 있습니다.
+    - `arrayUnion()` : 배열에 없는 요소만 추가
+  - firebase에 배열형태로 된 comments가 등록되는것을 확인했습니다.
+- 댓글 리스트 작업
+  - 더미 댓글리스트를 제거하고 fireStore에서 comments를 불러왔습니다
+  - comments가 최신순으로 나열되게 만들었습니다.
+- 댓글 삭제 작업(fireStore의 updateDoc, arrayRemove를 사용합니다.)
+  - 배열 요소 업데이트 : 문서에 Array(배열) 필드가 포함되어 있으면 `arrayRemove()`을 사용해 요소를 삭제할 수 있습니다.
+    - `arrayRemove()` : 배열에 없는 요소만 삭제
 
 ### 트러블 슈팅
 
@@ -206,7 +224,7 @@ export default AuthContext;
   }
   ```
 
-  해당 코드의 보고 쓰는 것이 전부 중지 되어있음을 확인했고 if false를 if true로 바꿔주었습니다. 이로써 게시글을 작성하는 것에는 이상이 없었지만 한가지 다른 문제점이 발견되었습니다. 바로 보안이 취약하다는점 이었고 이것을 다시한번 해결하기 위해 조건을 사용자가 로그인 되었을때만 작성 및 읽는 것이 가능하도록 변경 시켰습니다.
+  해당 코드의 게시글을 작성하는 것이 전부 중지 되어있음을 확인했고 if false를 if true로 바꿔주었습니다. 이로써 게시글을 작성하는 것에는 이상이 없었지만 한가지 다른 문제점이 발견되었습니다. 바로 보안이 취약하다는점 이었고 이것을 다시한번 해결하기 위해 조건을 사용자가 로그인 되었을때만 작성 및 읽는 것이 가능하도록 변경 시켰습니다.
 
   ```js
   rules_version = '2';
@@ -220,7 +238,14 @@ export default AuthContext;
     }
   }
   ```
+
   출처 : [firebase 공식문서](https://firebase.google.com/docs/firestore/security/get-started?hl=ko#auth-required)
+
+- feature/2-8에서 댓글생성이 되지 않는 오류를 발견하였습니다.
+  <img alt='에러내용' src='https://github.com/LKJ970524/blog-app/assets/115642699/7004983d-4296-4990-b29a-b9ca766fcdec' width=500px />
+
+  - 생성이 되지 않는 이유를 찾았고 너무 쉬운 문제였습니다. interface를 정의할때 post와 getPost를 같이 정의 했는데 Comments 컴포넌트에서 post만 사용하고 getPost는 사용하지 않아서 생긴 오류였습니다. 해결방법으로 getPost를 선언해주었습니다.
+  `<Comments post={post} /> => <Comments post={post} getPost={getPost} />`
 
 <br/>
 <br/>
