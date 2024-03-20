@@ -192,16 +192,18 @@ export default AuthContext;
 #### feature/2-8
 
 - 댓글 폼 UI 구현
-- 댓글 폼 작업(fireStore의 updateDoc, arrayRemove, arrayUnion을 사용합니다.)
+- 댓글 폼 작업(fireStore의 updateDoc, arrayUnion을 사용합니다.)
   - 문서 업데이트 : 전체 문서를 덮어쓰지 않고 문서의 일부 필드를 업데이트하려면 언어별 `update()` 메서드를 사용합니다.
   - 기존의 Posts에 comments라는 Array(배열)형태의 필드를 추가합니다.
-  - 배열 요소 업데이트 : 문서에 Array(배열) 필드가 포함되어 있으면 `arrayRemove()` 및 `arrayUnion()`을 사용해 요소를 추가하거나 삭제할수 있습니다.
-    - arrayUnion() : 배열에 없는 요소만 추가
-    - arrayRemove() : 제공된 각 요소의 모든 인스턴스를 삭제
+  - 배열 요소 업데이트 : 문서에 Array(배열) 필드가 포함되어 있으면 `arrayUnion()`을 사용해 요소를 추가할 수 있습니다.
+    - `arrayUnion()` : 배열에 없는 요소만 추가
   - firebase에 배열형태로 된 comments가 등록되는것을 확인했습니다.
 - 댓글 리스트 작업
   - 더미 댓글리스트를 제거하고 fireStore에서 comments를 불러왔습니다
   - comments가 최신순으로 나열되게 만들었습니다.
+- 댓글 삭제 작업(fireStore의 updateDoc, arrayRemove를 사용합니다.)
+  - 배열 요소 업데이트 : 문서에 Array(배열) 필드가 포함되어 있으면 `arrayRemove()`을 사용해 요소를 삭제할 수 있습니다.
+    - `arrayRemove()` : 배열에 없는 요소만 삭제
 
 ### 트러블 슈팅
 
