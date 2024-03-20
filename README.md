@@ -192,13 +192,16 @@ export default AuthContext;
 #### feature/2-8
 
 - 댓글 폼 UI 구현
-- 댓글 폼 작업(firestore의 updateDoc, arrayRemove, arrayUnion을 사용합니다.)
+- 댓글 폼 작업(fireStore의 updateDoc, arrayRemove, arrayUnion을 사용합니다.)
   - 문서 업데이트 : 전체 문서를 덮어쓰지 않고 문서의 일부 필드를 업데이트하려면 언어별 `update()` 메서드를 사용합니다.
   - 기존의 Posts에 comments라는 Array(배열)형태의 필드를 추가합니다.
-  - 배열 요소 업데이트 : 문서에 Array(배열) 필드가 포함되어 있으면 `arrayRemove()` 및 `arrayUnion()`을 사용해 요소를 추가하거나 삭제할수 있습니다. 
+  - 배열 요소 업데이트 : 문서에 Array(배열) 필드가 포함되어 있으면 `arrayRemove()` 및 `arrayUnion()`을 사용해 요소를 추가하거나 삭제할수 있습니다.
     - arrayUnion() : 배열에 없는 요소만 추가
     - arrayRemove() : 제공된 각 요소의 모든 인스턴스를 삭제
   - firebase에 배열형태로 된 comments가 등록되는것을 확인했습니다.
+- 댓글 리스트 작업
+  - 더미 댓글리스트를 제거하고 fireStore에서 comments를 불러왔습니다
+  - comments가 최신순으로 나열되게 만들었습니다.
 
 ### 트러블 슈팅
 
@@ -235,6 +238,12 @@ export default AuthContext;
   ```
 
   출처 : [firebase 공식문서](https://firebase.google.com/docs/firestore/security/get-started?hl=ko#auth-required)
+
+- feature/2-8에서 댓글생성이 되지 않는 오류를 발견하였습니다.
+  <img alt='에러내용' src='https://github.com/LKJ970524/blog-app/assets/115642699/7004983d-4296-4990-b29a-b9ca766fcdec' width=500px />
+
+  - 생성이 되지 않는 이유를 찾았고 너무 쉬운 문제였습니다. interface를 정의할때 post와 getPost를 같이 정의 했는데 Comments 컴포넌트에서 post만 사용하고 getPost는 사용하지 않아서 생긴 오류였습니다. 해결방법으로 getPost를 선언해주었습니다.
+  `<Comments post={post} /> => <Comments post={post} getPost={getPost} />`
 
 <br/>
 <br/>
