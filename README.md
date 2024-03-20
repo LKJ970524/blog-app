@@ -245,7 +245,9 @@ export default AuthContext;
   <img alt='에러내용' src='https://github.com/LKJ970524/blog-app/assets/115642699/7004983d-4296-4990-b29a-b9ca766fcdec' width=500px />
 
   - 생성이 되지 않는 이유를 찾았고 너무 쉬운 문제였습니다. interface를 정의할때 post와 getPost를 같이 정의 했는데 Comments 컴포넌트에서 post만 사용하고 getPost는 사용하지 않아서 생긴 오류였습니다. 해결방법으로 getPost를 선언해주었습니다.
-  `<Comments post={post} /> => <Comments post={post} getPost={getPost} />`
+  ```tsx
+  <Comments post={post} /> => <Comments post={post} getPost={getPost} />
+  ```
 
 <br/>
 <br/>
