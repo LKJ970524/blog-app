@@ -79,7 +79,7 @@
 </br>
 </br>
 
-### branch 별 작업(커밋 마다 코드가 있습니다.) 
+### branch 별 작업(커밋 마다 코드가 있습니다.)
 
 #### feature/2-2
 
@@ -171,21 +171,34 @@ export default AuthContext;
 ```
 
 #### feature/2-5
+
 - Firestore 세팅
 - Firestore로 데이터 생성하기 게시글 폼 작업
 - Firestore로 데이터 가져오기 게시글 리스트 작업
 - Firestore로 데이터 가져오기 게시글 detail 작업
 
 #### feature/2-6
+
 - Firestore로 데이터 수정하기 게시글 수정 구현
 - Firestore로 데이터 삭제하기 게시글 삭제 구현
 - Firestore 쿼리 적용하기 내가 쓴 글 탭 구현
 - Firestore 쿼리 적용하기 카테고리 탭 구현
 
 #### feature/2-7
+
 - Context Api로 다크모드 구현(다크모드 toggle 기능 구현)
 - Context Api로 다크모드 구현(다크모드 toggle css 구현)
 
+#### feature/2-8
+
+- 댓글 폼 UI 구현
+- 댓글 폼 작업(firestore의 updateDoc, arrayRemove, arrayUnion을 사용합니다.)
+  - 문서 업데이트 : 전체 문서를 덮어쓰지 않고 문서의 일부 필드를 업데이트하려면 언어별 `update()` 메서드를 사용합니다.
+  - 기존의 Posts에 comments라는 Array(배열)형태의 필드를 추가합니다.
+  - 배열 요소 업데이트 : 문서에 Array(배열) 필드가 포함되어 있으면 `arrayRemove()` 및 `arrayUnion()`을 사용해 요소를 추가하거나 삭제할수 있습니다. 
+    - arrayUnion() : 배열에 없는 요소만 추가
+    - arrayRemove() : 제공된 각 요소의 모든 인스턴스를 삭제
+  - firebase에 배열형태로 된 comments가 등록되는것을 확인했습니다.
 
 ### 트러블 슈팅
 
@@ -220,6 +233,7 @@ export default AuthContext;
     }
   }
   ```
+
   출처 : [firebase 공식문서](https://firebase.google.com/docs/firestore/security/get-started?hl=ko#auth-required)
 
 <br/>
