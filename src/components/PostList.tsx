@@ -19,10 +19,10 @@ interface PostListProps {
 }
 
 export interface CommentsInterface {
-  content: string
-  uid: string
-  email: string
-  createdAt: string
+  content: string;
+  uid: string;
+  email: string;
+  createdAt: string;
 }
 
 export interface PostProps {
@@ -35,7 +35,7 @@ export interface PostProps {
   updatedAt?: string;
   uid: string;
   category?: CategoryType;
-  comments?: CommentsInterface[]
+  comments?: CommentsInterface[];
 }
 
 type TabType = "all" | "my";
@@ -140,33 +140,36 @@ export default function PostList({
       )}
       <div className="post__list">
         {posts?.length > 0 ? (
-          posts?.map((post, index) => (
-            <div key={post?.id} className="post__box">
-              <Link to={`/posts/${post?.id}`}>
-                <div className="post__profile-box">
-                  <div className="post__profile" />
-                  <div className="post__author-name">{post?.email}</div>
-                  <div className="post__date">{post?.createdAt}</div>
-                </div>
-                <div className="post__title">{post?.title}</div>
-                <div className="post__text">{post?.summary}</div>
-              </Link>
-              {post?.email === user?.email && (
-                <div className="post__utils-box">
-                  <div
-                    className="post__delete"
-                    role="presentation"
-                    onClick={() => handleDelete(post.id as string)}
-                  >
-                    삭제
+          posts
+            ?.slice(0)
+            .reverse()
+            .map((post, index) => (
+              <div key={post?.id} className="post__box">
+                <Link to={`/posts/${post?.id}`}>
+                  <div className="post__profile-box">
+                    <div className="post__profile" />
+                    <div className="post__author-name">{post?.email}</div>
+                    <div className="post__date">{post?.createdAt}</div>
                   </div>
-                  <Link to={`/posts/edit/${post?.id}`} className="post__edit">
-                    수정
-                  </Link>
-                </div>
-              )}
-            </div>
-          ))
+                  <div className="post__title">{post?.title}</div>
+                  <div className="post__text">{post?.summary}</div>
+                </Link>
+                {post?.email === user?.email && (
+                  <div className="post__utils-box">
+                    <div
+                      className="post__delete"
+                      role="presentation"
+                      onClick={() => handleDelete(post.id as string)}
+                    >
+                      삭제
+                    </div>
+                    <Link to={`/posts/edit/${post?.id}`} className="post__edit">
+                      수정
+                    </Link>
+                  </div>
+                )}
+              </div>
+            ))
         ) : (
           <div className="post__no-post">게시글이 없습니다.</div>
         )}
