@@ -7,12 +7,11 @@
 - 개인 프로젝트이기 때문에 commit message와 pr, branch의 규칙을 따로 정하지 않았습니다. 참고 부탁드리겠습니다.
 - Firebase를 활용한 프로젝트이고 되도록 많은 기능을 사용해볼 예정입니다.
 - 베포 : Firebase
-- [베포 주소](https://google.com) <= 클릭시 베포사이트로 넘어갑니다.(아직 베포가 되지않았습니다.)
+- [베포 주소](https://react-blog-4f892.web.app) <= 클릭시 베포사이트로 넘어갑니다.
 
 ## 프로젝트 설계
 
 - 라우팅
-
   - / : 메인
   - /login : 로그인
   - /signUp : 회원가입
@@ -208,6 +207,11 @@ export default AuthContext;
     - `arrayRemove()` : 배열에 없는 요소만 삭제
 
 </br>
+
+#### 베포하기
+- Firebase CLI(Command Line Interface)를 사용하여 베포
+
+<br/>
 <!-- Top Button -->
 <p style='background: black; width: 32px; height: 32px; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-left: auto;'><a href="#top" style='color: white; '>▲</a></p>
 </br>
